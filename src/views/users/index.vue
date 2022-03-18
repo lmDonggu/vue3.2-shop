@@ -127,10 +127,10 @@ const changeState = async (info) => {
 
 const handleDialogValue = (row) => {
   if (isNull(row)) {
-    dialogTitle.value = '添加用户'
+    dialogTitle.value = i18n.t('dialog.adduserTitle')
     dialogTableValue.value = {}
   } else {
-    dialogTitle.value = '编辑用户'
+    dialogTitle.value = i18n.t('dialog.edituserTitle')
     dialogTableValue.value = JSON.parse(JSON.stringify(row))
   }
   dialogVisible.value = true

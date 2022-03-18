@@ -25,11 +25,19 @@ export default {
     deleteTitle: '确定要删除用户?',
     deleteSuccess: '删除成功!',
     deleteCancaled: '删除取消!',
-    ok: '是',
-    cancel: '取消'
+    confirm: '确认',
+    cancel: '取消',
+    adduserTitle: '添加用户',
+    edituserTitle: '编辑用户',
+    msgUsername: '请输入用户名',
+    msgPassword: '请输入密码',
+    msgEmail: '请输入邮箱',
+    msgMobile: '请输入手机号',
+    messageemail: '请输入正确邮箱格式 '
   },
   table: {
     username: '姓名',
+    password: '密码',
     email: '邮箱',
     mobile: '手机',
     role_name: '角色',

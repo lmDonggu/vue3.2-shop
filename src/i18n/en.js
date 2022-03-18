@@ -25,11 +25,19 @@ export default {
     deleteTitle: 'Are you sure you want to delete the user ?',
     deleteSuccess: 'Delete the success !',
     deleteCancaled: 'Delete canceled !',
-    ok: 'OK',
-    cancel: 'cancel'
+    confirm: 'confirm',
+    cancel: 'cancel',
+    adduserTitle: 'Add User',
+    edituserTitle: 'Edit The User',
+    msgUsername: 'Please input Activity username',
+    msgPassword: 'Please input Activity password',
+    msgEmail: 'Please input Activity email',
+    msgMobile: 'Please input Activity mobile',
+    messageemail: 'Please enter the correct email format'
   },
   table: {
     username: 'username',
+    password: 'password',
     email: 'email',
     mobile: 'mobile',
     role_name: 'role name',

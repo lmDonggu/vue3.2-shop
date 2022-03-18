@@ -2,31 +2,37 @@
   <el-dialog
     :model-value="dialogVisible"
     :title="dialogTitle"
-    width="40%"
+    width="50%"
     @close="handleClose"
   >
     <el-form ref="formRef" :model="form" label-width="70px" :rules="rules">
-      <el-form-item label="用户名" prop="username">
+      <!-- 用户名 -->
+      <el-form-item :label="dialogForm.username" prop="username">
         <el-input v-model="form.username"></el-input>
       </el-form-item>
+      <!-- 密码 -->
       <el-form-item
-        label="密码"
+        :label="dialogForm.password"
         prop="password"
-        v-if="dialogTitle === '添加用户'"
+        v-if="dialogTitle === '添加用户' || dialogTitle === 'Add User'"
       >
         <el-input v-model="form.password" type="password"></el-input>
       </el-form-item>
-      <el-form-item label="邮箱" prop="email">
+      <!-- 邮箱 -->
+      <el-form-item :label="dialogForm.email" prop="email">
         <el-input v-model="form.email"></el-input>
       </el-form-item>
-      <el-form-item label="手机" prop="mobile">
+      <!-- 手机 -->
+      <el-form-item :label="dialogForm.mobile" prop="mobile">
         <el-input v-model="form.mobile"></el-input>
       </el-form-item>
     </el-form>
     <template #footer>
       <span class="dialog-footer">
-        <el-button @click="handleClose">取消</el-button>
-        <el-button type="primary" @click="handleConfirm">确认</el-button>
+        <el-button @click="handleClose">{{ dialogForm.cancel }}</el-button>
+        <el-button type="primary" @click="handleConfirm">{{
+          dialogForm.confirm
+        }}</el-button>
       </span>
     </template>
   </el-dialog>
@@ -57,37 +63,46 @@ const form = ref({
   email: '',
   mobile: ''
 })
+const dialogForm = ref({
+  username: i18n.t('table.username'),
+  password: i18n.t('table.password'),
+  email: i18n.t('table.email'),
+  mobile: i18n.t('table.mobile'),
+  adduserTitle: i18n.t('dialog.adduserTitle'),
+  confirm: i18n.t('dialog.confirm'),
+  cancel: i18n.t('dialog.cancel')
+})
 const rules = ref({
   username: [
     {
       required: true,
-      message: 'Please input Activity username',
+      message: i18n.t('dialog.msgUsername'),
       trigger: 'blur'
     }
   ],
   password: [
     {
       required: true,
-      message: 'Please input Activity password',
+      message: i18n.t('dialog.msgPassword'),
       trigger: 'blur'
     }
   ],
   email: [
     {
       required: true,
-      message: 'Please input Activity email',
+      message: i18n.t('dialog.msgEmail'),
       trigger: 'blur'
     },
     {
       type: 'email',
-      message: '请输入正确邮箱',
+      message: i18n.t('dialog.messageemail'),
       trigger: ['blur', 'change']
     }
   ],
   mobile: [
     {
       required: true,
-      message: 'Please input Activity mobile',
+      message: i18n.t('dialog.msgMobile'),
       trigger: 'blur'
     }
   ]
@@ -111,7 +126,7 @@ const handleClose = () => {
 const handleConfirm = () => {
   formRef.value.validate(async (valid) => {
     if (valid) {
-      props.dialogTitle === '添加用户'
+      props.dialogTitle === '添加用户' || props.dialogTitle === 'Add User'
         ? await addUser(form.value)
         : await editUser(form.value)
       ElMessage({
@@ -128,4 +143,9 @@ const handleConfirm = () => {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+::v-deep .el-form-item__label {
+  white-space: nowrap !important;
+  margin-right: 15px;
+}
+</style>
